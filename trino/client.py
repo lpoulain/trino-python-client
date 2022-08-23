@@ -740,7 +740,14 @@ class TrinoQuery(object):
         if self.cancelled:
             raise exceptions.TrinoUserError("Query has been cancelled", self.query_id)
 
-        response = self._request.post(self._sql, additional_http_headers)
+        if self._experimental_python_types:
+            http_headers = {constants.HEADER_CLIENT_CAPABILITIES: 'PARAMETRIC_DATETIME'}
+            if additional_http_headers:
+                http_headers.update(additional_http_headers)
+        else:
+            http_headers = additional_http_headers
+
+        response = self._request.post(self._sql, http_headers)
         status = self._request.process(response)
         self._info_uri = status.info_uri
         self.query_id = status.id

@@ -283,7 +283,7 @@ def test_datetime_query_param(trino_connection):
     rows = cur.fetchall()
 
     assert rows[0][0] == params
-    assert cur.description[0][1] == "timestamp"
+    assert cur.description[0][1] == "timestamp(6)"
 
 
 def test_datetime_with_utc_time_zone_query_param(trino_connection):
@@ -295,7 +295,7 @@ def test_datetime_with_utc_time_zone_query_param(trino_connection):
     rows = cur.fetchall()
 
     assert rows[0][0] == params
-    assert cur.description[0][1] == "timestamp with time zone"
+    assert cur.description[0][1] == "timestamp(6) with time zone"
 
 
 def test_datetime_with_numeric_offset_time_zone_query_param(trino_connection):
@@ -309,7 +309,7 @@ def test_datetime_with_numeric_offset_time_zone_query_param(trino_connection):
     rows = cur.fetchall()
 
     assert rows[0][0] == params
-    assert cur.description[0][1] == "timestamp with time zone"
+    assert cur.description[0][1] == "timestamp(6) with time zone"
 
 
 def test_datetime_with_named_time_zone_query_param(trino_connection):
@@ -321,7 +321,7 @@ def test_datetime_with_named_time_zone_query_param(trino_connection):
     rows = cur.fetchall()
 
     assert rows[0][0] == params
-    assert cur.description[0][1] == "timestamp with time zone"
+    assert cur.description[0][1] == "timestamp(6) with time zone"
 
 
 def test_datetime_with_trailing_zeros(trino_connection):
