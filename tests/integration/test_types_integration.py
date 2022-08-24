@@ -280,12 +280,12 @@ def test_timestamp(trino_connection):
 
 
 def test_timestamp_with_timezone(trino_connection):
-    execute_timestamp_with_timezone(trino_connection, '-08:00')
-    execute_timestamp_with_timezone(trino_connection, '+08:00')
-    execute_timestamp_with_timezone(trino_connection, '+05:30')
+    query_timestamp_with_timezone(trino_connection, '-08:00')
+    query_timestamp_with_timezone(trino_connection, '+08:00')
+    query_timestamp_with_timezone(trino_connection, '+05:30')
 
 
-def execute_timestamp_with_timezone(trino_connection, timezone_str):
+def query_timestamp_with_timezone(trino_connection, timezone_str):
     tz = datetime.datetime.strptime(timezone_str, "%z").tzinfo
 
     timestamp_0 = datetime.datetime(2001, 8, 22, 1, 23, 45, 0, tzinfo=tz)
