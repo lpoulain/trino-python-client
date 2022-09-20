@@ -930,8 +930,9 @@ class RowMapperFactory:
                      + val[dt_tz_offset:], pattern + ' %z')
                         if tz.startswith('+') or tz.startswith('-')
                         else pytz.timezone(tz).localize(datetime.strptime(dt[:timestamp_length]
-                                               + str(round(int(val[timestamp_length:dt_tz_offset]) / millis_div))
-                                               + dt[dt_tz_offset:], pattern))
+                                                        + str(round(int(val[timestamp_length:dt_tz_offset])
+                                                                    / millis_div))
+                                                        + dt[dt_tz_offset:], pattern))
                         for dt, tz in [val.rsplit(' ', 1)]][0]
             else:
                 return lambda val: [datetime.strptime(val, pattern + ' %z')
@@ -957,7 +958,10 @@ class RowMapperFactory:
 
         if 'with time zone' in col_type:
             if millis_div > 1:
-                return lambda val: self._get_time_with_timezone_round_ms(val, datetime_default_size, millis_div, pattern)
+                return lambda val: self._get_time_with_timezone_round_ms(val,
+                                                                         datetime_default_size,
+                                                                         millis_div,
+                                                                         pattern)
             else:
                 return lambda val: self._get_time_with_timezone(val, time_size, pattern)
         else:
