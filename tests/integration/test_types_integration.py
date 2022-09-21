@@ -207,7 +207,6 @@ def test_date(trino_connection):
     SqlTest(trino_connection) \
         .add_field(sql="CAST(null AS DATE)", python=None) \
         .add_field(sql="DATE '2001-08-22'", python=datetime.date(2001, 8, 22)) \
-        .add_field(sql="DATE '02001-08-22'", python=datetime.date(2001, 8, 22)) \
         .add_field(sql="DATE '0001-01-01'", python=datetime.date(1, 1, 1)) \
         .add_field(sql="DATE '1582-10-04'", python=datetime.date(1582, 10, 4)) \
         .add_field(sql="DATE '1582-10-05'", python=datetime.date(1582, 10, 5)) \

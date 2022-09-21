@@ -914,7 +914,7 @@ class RowMapperFactory:
             else float(val)
 
     def _timestamp_map_func(self, column, col_type):
-        datetime_default_size = 20  # size of 'YYYY-MM-DD HH:MM:SS.' (the datetime string up to the milliseconds)
+        datetime_default_size = len('YYYY-MM-DD HH:MM:SS.')
         pattern = "%Y-%m-%d %H:%M:%S"
         millis_length, millis_div = self._get_number_of_millis_digits(column)
         if millis_length > 0:
